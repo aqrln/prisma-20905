@@ -21,6 +21,10 @@
           ];
 
           shellHook = ''
+            if ! type nixos-version &> /dev/null; then
+              export LD_LIBRARY_PATH=/lib/${system}-gnu:/usr/lib/${system}-gnu
+            fi
+
             export PGDIR=$(pwd)/.direnv/.postgres
             export PGHOST=$PGDIR
             export PGDATA=$PGDIR/data
